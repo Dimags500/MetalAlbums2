@@ -1,0 +1,49 @@
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{album.albumPicture}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{album.name}}</h5>
+        <a routerLink="author/+{{album.authorID}}" style="text-decoration: none;">
+          <h5>{{getAuthorName(album.authorID)}}</h5>
+        </a>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
+          This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="editSongMode">
+  <app-SongForm></app-SongForm>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of curr_songs ">
+      <td>{{item.trackNumber}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.year}}</td>
+      <ng-container *ngIf="isAdmin">
+
+
+
+
+        <td (click)="editSong(item.id)" style="cursor: pointer; color: rgb(6, 180, 122);"><i class="bi bi-wrench"></i>
+        </td>
+        <td (click)="deleteSong(item.id)" style="cursor: pointer; color: red;"><i class="bi bi-x-circle"></i>
+        </td>
+      </ng-container>
+
+    </tr>
+  </tbody>
+</table>

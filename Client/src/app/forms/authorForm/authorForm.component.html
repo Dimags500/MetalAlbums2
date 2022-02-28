@@ -1,0 +1,9 @@
+<form (ngSubmit)="onSubmit(addAuthorForm)" #addAuthorForm="ngForm">
+
+  <div class="mb-3">
+    <label for="Author Name" class="form-label">Author Name</label>
+    <input type="text" class="form-control" ngModel required #name="ngModel" id="authorName" name="name">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>

@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3 mt-4">
+    <h3>Add Song</h3>
+
+    <form #addSongForm="ngForm" (ngSubmit)="onSubmit(addSongForm)">
+
+      <div class="form-group my-2">
+        <select class="form-select" ngModel required #selectedAuthor="ngModel" id="selectedAuthor"
+          name="selectedAuthor">
+          <option *ngFor="let item of authors">{{item.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group my-2">
+        <select class="form-select" ngModel required #selectedAlbum="ngModel" id="selectedAlbum" name="selectedAlbum">
+          <option *ngFor="let item of albums">{{item.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group my-2">
+        <input name="songName" ngModel #songName="ngModel" type="text" class="form-control" id="name"
+          placeholder="Name">
+      </div>
+
+
+      <div class="form-group my-2">
+        <input name="songYear" ngModel #songYear="ngModel" type="number" class="form-control" id="year"
+          placeholder="Year">
+      </div>
+      <div class="form-group my-2">
+        <input name="trackNumber" ngModel #trackNumber="ngModel" type="number" class="form-control" id="trackNumber"
+          placeholder="trackNumber">
+      </div>
+
+
+
+
+
+
+      <button type="submit" class="btn btn-primary">Create <i class="bi bi-arrow-right-circle mx-1"></i></button>
+    </form>
+
+
+
+  </div>
+</div>
