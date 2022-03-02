@@ -8,6 +8,7 @@ namespace Core.Entites
 {
     public class Author : BaseEntity
     {
+        public string Picture { get; set; }
         public List<Album> Albums { get; set; }
     }
 }

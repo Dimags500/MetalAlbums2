@@ -17,13 +17,19 @@ export class AuthorFormComponent implements OnInit {
   onSubmit(form : NgForm){
   
   let author = form.value; 
+  
   this.postAuthor(author);
   location.reload();
 
   }
 
   postAuthor(name : any){
-    this.api.post('Author' , name ).subscribe();
+    this.api.post('Author' , name ).subscribe((res)=> {
+
+    }, error =>{
+      console.log(error);
+      
+    });
   }
 
 }

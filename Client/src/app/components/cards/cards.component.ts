@@ -21,7 +21,6 @@ export class CardsComponent implements OnInit {
 
   getAuthorName(id: any){
     return this.authorsArr[id -1].name as string ;
-
   }
 
 }

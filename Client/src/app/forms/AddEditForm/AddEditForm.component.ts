@@ -26,15 +26,18 @@ album!: IAlbum ;
   onSubmit(form : NgForm){
 
   let x = form.value; 
-  let findAuthor = this.authors.find(z => z.name == x.selectedAuthor)?.id as any;
+  let findAuthor = this.authors.find(z => z.name == x.selectedAuthor)?.id as any ;
+  let num =1 ;
   console.log(findAuthor);
   
 
-  this.album  =  {name : x.albumName , year : x.albumYear  , authorID : findAuthor | 1 , albumPicture : x.albumPicture  } ;
+  this.album  =  {name : x.albumName , year : x.albumYear  , authorID : findAuthor | num , albumPicture : x.albumPicture  } ;
+  
   console.log(this.album);
   
+  
   this.postAlbum(this.album);
-  location.reload();      
+  // location.reload();      
 
   
   }
@@ -48,15 +51,8 @@ album!: IAlbum ;
     )
   }
 
-  postAlbum(form : IAlbum){
-    this.api.post('album' , form).subscribe((res)=>{
-      console.log(res);
-      
-    }, 
-    error => {
-      console.log(error);
-      
-    })
+  postAlbum(form : any){
+    this.api.post('Album' , form).subscribe();
   }
 
   

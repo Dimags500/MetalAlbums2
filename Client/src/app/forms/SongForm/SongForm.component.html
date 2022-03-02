@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md-6 offset-md-3 mt-4">
     <h3>Add Song</h3>
-
-    <form #addSongForm="ngForm" (ngSubmit)="onSubmit(addSongForm)">
+    <!-- (ngSubmit)="onSubmit(addSongForm)" -->
+    <form #addSongForm="ngForm">
 
       <div class="form-group my-2">
         <select class="form-select" ngModel required #selectedAuthor="ngModel" id="selectedAuthor"
@@ -18,26 +18,38 @@
       </div>
 
       <div class="form-group my-2">
-        <input name="songName" ngModel #songName="ngModel" type="text" class="form-control" id="name"
-          placeholder="Name">
+        <input name="songName" ngModel #songName="ngModel" [(ngModel)]="song.name" type="text" class="form-control"
+          id="name" placeholder="Name">
       </div>
 
 
       <div class="form-group my-2">
-        <input name="songYear" ngModel #songYear="ngModel" type="number" class="form-control" id="year"
-          placeholder="Year">
+        <input name="songYear" ngModel #songYear="ngModel" [(ngModel)]="song.year" type="number" class="form-control"
+          id="year" placeholder="Year">
       </div>
       <div class="form-group my-2">
-        <input name="trackNumber" ngModel #trackNumber="ngModel" type="number" class="form-control" id="trackNumber"
-          placeholder="trackNumber">
+        <input name="trackNumber" ngModel #trackNumber="ngModel" [(ngModel)]="song.trackNumber" type="number"
+          class="form-control" id="trackNumber" placeholder="trackNumber">
       </div>
 
 
 
 
 
+      <ng-container *ngIf="edit">
+        <button type="submit" (click)="editSong(addSongForm)" class="btn btn-primary">Edit <i
+            class="bi bi-arrow-right-circle mx-1"></i></button>
+      </ng-container>
 
-      <button type="submit" class="btn btn-primary">Create <i class="bi bi-arrow-right-circle mx-1"></i></button>
+      <div [hidden]="edit">
+        <button type="submit" (click)="onSubmit(addSongForm)" class="btn btn-primary">Create <i
+            class="bi bi-arrow-right-circle mx-1"></i></button>
+      </div>
+
+      <div [ngSwitch]="edit">
+
+
+      </div>
     </form>
 
 

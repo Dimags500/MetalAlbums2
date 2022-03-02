@@ -10,12 +10,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './servises/api.service';
 import { HeaderComponent } from './components/header/header.component';
 import { CardComponent } from './components/card/card.component';
-import { CardsComponent } from './components/cards/cards.component';
 import { HomeComponent } from './components/home/home.component';
 import { AddEditFormComponent } from './forms/AddEditForm/AddEditForm.component';
 import { SongFormComponent } from './forms/SongForm/SongForm.component';
 import { AuthorFormComponent } from './forms/authorForm/authorForm.component';
 import { AuthorsComponent } from './components/authors/authors.component';
+import { OrderByPipe } from './pipes/OrderBy.pipe';
+import {NgPipesModule} from 'ngx-pipes';
+import { CardsComponent } from './components/cards/cards.component';
+import { AuthorCardComponent } from './components/authors/author-card/author-card.component';
+
 
 
 
@@ -25,13 +29,16 @@ import { AuthorsComponent } from './components/authors/authors.component';
     HeaderComponent ,
     HomeComponent,
     CardComponent,
-    CardsComponent ,
     AdminPageComponent ,
     AddEditFormComponent , 
     SongFormComponent , 
     AuthorFormComponent ,
     AuthorsComponent ,
-    AuthorFormComponent
+    AuthorFormComponent ,
+    OrderByPipe ,
+    CardsComponent ,
+    AuthorCardComponent
+
     
 
     
@@ -44,6 +51,7 @@ import { AuthorsComponent } from './components/authors/authors.component';
     HttpClientModule ,
     FormsModule ,
     ReactiveFormsModule ,
+    NgPipesModule
   
   ],
   providers: [ApiService],

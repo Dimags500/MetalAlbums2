@@ -1,3 +1,9 @@
-<p>
-  authors works!
-</p>
+<div class="container">
+
+  <div class="row row-cols-1 row-cols-sm-3 row-cols-md-6 g-3">
+    <div class="card-group" *ngFor="let item of authors">
+
+      <app-author-card [singleAuthor]="item" (deleteAuthorEvent)="deleteAuthor($event)"></app-author-card>
+    </div>
+  </div>
+</div>

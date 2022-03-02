@@ -39,7 +39,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Album>> CreateAlbumAsync([FromBody] CreateAlbumDto album)
+        public async Task<ActionResult<Album>> CreateAlbumAsync(CreateAlbumDto album)
         {
             var newAlbum = new Album()
             {

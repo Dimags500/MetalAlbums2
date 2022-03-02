@@ -3,6 +3,8 @@
   <div class="mb-3">
     <label for="Author Name" class="form-label">Author Name</label>
     <input type="text" class="form-control" ngModel required #name="ngModel" id="authorName" name="name">
+    <label for="Author Picture" class="form-label">Author Picture</label>
+    <input type="text" class="form-control" ngModel #picture="ngModel" id="authorPicture" name="picture">
   </div>
 
   <button type="submit" class="btn btn-primary">Add</button>

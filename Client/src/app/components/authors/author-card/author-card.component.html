@@ -1,0 +1,15 @@
+<div class="col">
+
+  <div class="card h-100 "><a [routerLink]="['/author' , singleAuthor.id]">
+      <img src="{{singleAuthor.picture}}" class="card-img-top" alt="{{singleAuthor.name}}">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title"><a [routerLink]="['/author' , singleAuthor.id]">{{singleAuthor.name}}</a></h5>
+      <p class="card-text">metal band</p>
+    </div>
+
+    <ng-container *ngIf="isAdmin">
+      <button (click)="deleteAuthor(singleAuthor.id)">Delete</button>
+    </ng-container>
+  </div>
+</div>

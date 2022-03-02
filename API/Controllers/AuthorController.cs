@@ -28,7 +28,7 @@ namespace API.Controllers
 
             foreach (var item in authors)
             {
-                dtos.Add(new AuthorDto() { Id = item.Id, Name = item.Name });
+                dtos.Add(new AuthorDto() { Id = item.Id, Name = item.Name , Picture = item.Picture });
             }
 
             return Ok(dtos);
@@ -44,14 +44,14 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            var dto = new AuthorDto() { Id = author.Id, Name = author.Name };
+            var dto = new AuthorDto() { Id = author.Id, Name = author.Name  , Picture = author.Picture};
             return Ok(dto);
         }
 
         [HttpPost]
         public async Task<ActionResult<Author>> PostAuthor( CreateAuthorDto author)
         {
-            var newAuthor = new Author() {Name = author.Name };
+            var newAuthor = new Author() {Name = author.Name  , Picture = author.Picture };
 
             return await authorRepository.AddAuthorAsync(newAuthor);
         }

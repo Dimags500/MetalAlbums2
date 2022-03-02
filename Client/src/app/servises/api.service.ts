@@ -37,5 +37,8 @@ delete(category : string  , id : any){
 deleteSong(id : any){
   return this.http.delete<any>(this.baseUrl+ 'Song?id='+id);
 }
+deleteAuthor(id : any){
+  return this.http.delete<any>(this.baseUrl+ 'author?id='+id);
+}
 
 }

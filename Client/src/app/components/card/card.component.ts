@@ -21,11 +21,15 @@ editSongMode = false;
 
 id :any ;
 
+curr_song_id : any ;
+
   constructor(private api : ApiService , private routh : ActivatedRoute ) { }
 
   ngOnInit() {
 
-    this.id = this.routh.snapshot.paramMap.get('id');
+    this.id = this.routh.snapshot.paramMap.get('id');    
+    console.log(this.id);
+    
     this.getAlbum();
     this.getAuthors();
     this.getSongs();
@@ -91,7 +95,9 @@ id :any ;
   }
 
   editSong(id : any){
-    this.editSongModeToggle() ;
+    this.editSongModeToggle();
+
+    this.curr_song_id = id ;
     
 
 
@@ -99,6 +105,7 @@ id :any ;
   editSongModeToggle(){
     this.editSongMode = !this.editSongMode;
   }
+
 
   
 

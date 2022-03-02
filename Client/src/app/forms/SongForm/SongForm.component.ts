@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IAlbum } from 'src/app/modals/album';
 import { IAuthor } from 'src/app/modals/author';
@@ -12,30 +12,52 @@ import { ApiService } from 'src/app/servises/api.service';
 })
 export class SongFormComponent implements OnInit {
 
+  @Input() edit : boolean = false ;
+  @Input() id : any ;
+
   authors : IAuthor[] = [];
   albums : IAlbum [] = [];
   song! : ISong ;
+
+  
 
   constructor(private api : ApiService) { }
 
   ngOnInit() {
     this.getAlbums();
     this.getAuthors();
+    if(this.edit){
+      console.log(this.id);
+      this.getSongById();
+
+    }
+
   }
 
   onSubmit(form : NgForm){
-
   let x = form.value; 
   let findAuthor = this.authors.find(z => z.name == x.selectedAuthor)?.id as any;
   let findAlbum = this.albums.find(z => z.name == x.selectedAlbum)?.id as any;
-  
-
   this.song  =  {name : x.songName , year : x.songYear  , authorID : findAuthor | 1 , albumID : findAlbum | 1 , trackNumber : x.trackNumber } ;
-  console.log(this.song);
-
   this.postSong(this.song)
     
+  }
 
+  editSong(form : NgForm){
+    let x = form.value; 
+    let findAuthor = this.authors.find(z => z.name == x.selectedAuthor)?.id as any;
+    let findAlbum = this.albums.find(z => z.name == x.selectedAlbum)?.id as any;
+    this.song  =  {name : x.songName , year : x.songYear  , authorID : findAuthor | 1 , albumID : findAlbum | 1 , trackNumber : x.trackNumber , id : this.id } ;
+    console.log(this.song);
+  }
+
+  initSong(id: any ){
+
+
+    // let findAuthor = this.authors.find(z => z.name == x.selectedAuthor)?.id as any;
+    // let findAlbum = this.albums.find(z => z.name == x.selectedAlbum)?.id as any;
+    // this.song  =  {name : x.songName , year : x.songYear  , authorID : findAuthor | 1 , albumID : findAlbum | 1 , trackNumber : x.trackNumber , id : this.id } ;
+    // console.log(this.song);
   }
 
   getAlbums(){
@@ -48,14 +70,22 @@ export class SongFormComponent implements OnInit {
     );
   }
   getAuthors(){
-this.api.get('author').subscribe((res)=> {
-  this.authors = res ;
-}, 
-error => console.log(error));
-  }
+    this.api.get('author').subscribe((res)=> {
+      this.authors = res ;
+    }, 
+    error => console.log(error));
+      }
 
   postSong(song :ISong){
     this.api.post('song' , song).subscribe() ; 
+  }
+
+  getSongById(){
+    this.api.getById('song', this.id).subscribe((res)=>{
+    this.song  = res;
+    console.log(this.song  );
+    
+    });
   }
 
 
