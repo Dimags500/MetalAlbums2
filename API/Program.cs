@@ -8,6 +8,12 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -24,9 +30,43 @@ builder.Services.AddCors(options =>
 //---------sql 
 var cs = builder.Configuration.GetConnectionString("MsSQL");
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(cs));
+
+var jwtconfig = builder.Configuration.GetSection("JwtConfig");
+builder.Services.Configure<JwtConfig>(jwtconfig);
+
+//var Bigkey = builder.Configuration.GetSection(nameof(JwtConfig)).Get<JwtConfig>();
+
+
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
-builder.Services.AddScoped<ISongRepository, SongRepository>();  
+builder.Services.AddScoped<ISongRepository, SongRepository>();
+
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(jwt =>
+    {
+        var key = Encoding.ASCII.GetBytes(builder.Configuration["JwtConfig:secret2"]);
+        jwt.SaveToken = true;
+        jwt.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key) ,
+            ValidateIssuer = false ,
+            ValidateAudience =false ,
+            ValidateLifetime = true ,
+            RequireExpirationTime = false
+        };
+    });
+
+builder.Services
+    .AddDefaultIdentity<IdentityUser>(opt => opt.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<DataContext>();
+
+
+   
 
 
 
@@ -56,7 +96,7 @@ app.UseStatusCodePagesWithReExecute("/errors/{0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCors(MyAllowSpecificOrigins);
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
