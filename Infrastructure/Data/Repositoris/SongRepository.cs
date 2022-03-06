@@ -21,7 +21,7 @@ namespace Infrastructure.Data.Repositoris
         }
         public async Task<Song> AddSongAsync(Song song)
         {
-            await context.AddAsync(song);
+            await context.Songs.AddAsync(song);
             await context.SaveChangesAsync();
 
             return await GetSongAsync(song.Id);
@@ -53,7 +53,7 @@ namespace Infrastructure.Data.Repositoris
 
         public async Task<Song> UpdateSongAsync(Song song)
         {
-            context.Update(song);
+            context.Songs.Update(song);
             await context.SaveChangesAsync();
 
             return GetSongAsync(song.Id).Result;

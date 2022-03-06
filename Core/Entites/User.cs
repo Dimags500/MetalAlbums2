@@ -7,9 +7,16 @@ using System.Threading.Tasks;
 
 namespace Core.Entites
 {
-    //public class User : BaseEntity
-    //{
-    //    public UserRoles Role { get; set; }
-    //    public string image { get; set; }
-    //}
+    public  class User
+    {
+
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public UserRoles userRole{ get; set; }
+        public string Password  { get; set; }
+
+        //public byte[] PasswordHash { get; set; }
+        //public byte[] PasswordSalt { get; set; }
+
+    }
 }

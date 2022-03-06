@@ -4,13 +4,13 @@
 
 namespace Infrastructure.Migrations
 {
-    public partial class authorpicture : Migration
+    public partial class v3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "picture",
-                table: "Author",
+                name: "Password",
+                table: "Users",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
@@ -19,8 +19,8 @@ namespace Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "picture",
-                table: "Author");
+                name: "Password",
+                table: "Users");
         }
     }
 }

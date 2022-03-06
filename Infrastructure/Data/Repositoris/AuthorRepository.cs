@@ -35,7 +35,7 @@ namespace Infrastructure.Data.Repositoris
 
             if (itemToRemove != null)
             {
-                context.Author.Remove(itemToRemove);
+                context.Authors.Remove(itemToRemove);
             }
 
             return context.SaveChangesAsync();
@@ -44,19 +44,19 @@ namespace Infrastructure.Data.Repositoris
 
         public async Task<IReadOnlyCollection<Author>> GetAllAuthorsAsync()
         {
-            return await context.Author.ToListAsync();
+            return await context.Authors.ToListAsync();
         }
 
         public async Task<Author> GetAuthorAsync(int authorId)
         {
 
-            var item = await context.Author.FirstOrDefaultAsync(x => x.Id == authorId);
+            var item = await context.Authors.FirstOrDefaultAsync(x => x.Id == authorId);
             return item;
         }
 
         public async Task<Author> UpdateAuthorAsync(Author author)
         {
-            context.Author.Update(author);
+            context.Authors.Update(author);
 
             await context.SaveChangesAsync();
 
