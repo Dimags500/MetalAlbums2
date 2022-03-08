@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { IUser } from 'src/app/modals/user';
+import { AccountService } from 'src/app/servises/account.service';
+import { ApiService } from 'src/app/servises/api.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +12,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+model: any ={} ;
+loginMode  = false ;
+showLogin = true ;
+users: IUser[] = [] ;
+
+currentUser$! : Observable<IUser>;
+
+  constructor(private api: ApiService , public account: AccountService) { }
+
+  
 
   ngOnInit() {
+    this.getCurrentUser();
+
   }
+
+ 
+  showLoginToggle(){
+    this.showLogin = !this.showLogin;
+  }
+  loginModeToggle(){
+    this.loginMode = !this.loginMode
+    this.showLoginToggle();
+  }
+
+  logOut(){
+    this.account.logOut();
+    this.loginMode = false ;
+  }
+
+  getCurrentUser(){
+    this.account.currentUser$.subscribe(user => {
+      this.loginMode = !!user ; 
+      this.showLoginToggle();
+    }, error => {
+      console.log(error);
+      
+    })
+  }
+
+
+
+  
 
 }

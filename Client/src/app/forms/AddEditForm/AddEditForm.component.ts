@@ -37,7 +37,7 @@ album!: IAlbum ;
   
   
   this.postAlbum(this.album);
-  // location.reload();      
+  location.reload();      
 
   
   }

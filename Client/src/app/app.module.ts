@@ -19,6 +19,8 @@ import { OrderByPipe } from './pipes/OrderBy.pipe';
 import {NgPipesModule} from 'ngx-pipes';
 import { CardsComponent } from './components/cards/cards.component';
 import { AuthorCardComponent } from './components/authors/author-card/author-card.component';
+import { LoginComponent } from './components/header/login/login/login.component';
+import { SongsComponent } from './components/songs/songs.component';
 
 
 
@@ -37,7 +39,9 @@ import { AuthorCardComponent } from './components/authors/author-card/author-car
     AuthorFormComponent ,
     OrderByPipe ,
     CardsComponent ,
-    AuthorCardComponent
+    AuthorCardComponent ,
+    LoginComponent, 
+    SongsComponent
 
     
 

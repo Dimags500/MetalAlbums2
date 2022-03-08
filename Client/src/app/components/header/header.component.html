@@ -14,11 +14,22 @@
       <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
     </ul>
 
-    <div class="col-md-3 text-end">
-      <button type="button" class="btn btn-outline-primary me-2">Login</button>
+    <div class="col-md-3 text-end" *ngIf="!(account.currentUser$ | async); else loggedBtns">
+      <button type="button" class="btn btn-outline-primary me-2" (click)="showLoginToggle()">Login</button>
       <button type="button" class="btn btn-primary">Sign-up</button>
-      <button routerLink="/admin" type="button" class="btn btn-warning  mx-3">Admin</button>
-
     </div>
+
+    <ng-template #loggedBtns="">
+      <button routerLink="/admin" type="button" class="btn btn-warning  mx-3">Admin</button>
+      <button type="button" class="btn btn-outline-primary" (click)="logOut()">LogOut</button>
+
+    </ng-template>
   </header>
+</div>
+
+
+<div *ngIf="!showLogin">
+  <div *ngIf="!(account.currentUser$ | async)">
+    <app-login (loginEvent)="loginModeToggle()"></app-login>
+  </div>
 </div>

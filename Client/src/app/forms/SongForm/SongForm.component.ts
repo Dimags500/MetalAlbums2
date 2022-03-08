@@ -62,7 +62,7 @@ export class SongFormComponent implements OnInit {
 
   getAlbums(){
     this.api.get('album').subscribe((res)=> {
-      this.albums = res;
+      this.albums = res;      
     }, 
     error =>{
       console.log(error);
@@ -76,17 +76,30 @@ export class SongFormComponent implements OnInit {
     error => console.log(error));
       }
 
+  getAuthorName(id: any){
+  let name ;
+  name = this.authors[id -1 ] ;
+   return name.name
+  }
+
+  getAlbumName(id: any){
+
+    let album ;
+    album = this.albums[id-1]    
+     return album.name
+    }
+
   postSong(song :ISong){
     this.api.post('song' , song).subscribe() ; 
   }
 
   getSongById(){
     this.api.getById('song', this.id).subscribe((res)=>{
-    this.song  = res;
-    console.log(this.song  );
-    
+    this.song  = res;    
     });
   }
+
+
 
 
 
