@@ -4,6 +4,7 @@ import { timeout } from 'rxjs';
 import { IAlbum } from 'src/app/modals/album';
 import { IAuthor } from 'src/app/modals/author';
 import { ISong } from 'src/app/modals/song';
+import { AccountService } from 'src/app/servises/account.service';
 import { ApiService } from 'src/app/servises/api.service';
 
 @Component({
@@ -16,14 +17,12 @@ export class CardComponent implements OnInit {
 @Input() authors! : IAuthor[] ;
 songs : ISong []  = [] ;
 curr_songs : ISong[] = [];
-isAdmin = false;
 editSongMode = false;
 
 id :any ;
-
 curr_song_id : any ;
 
-  constructor(private api : ApiService , private routh : ActivatedRoute ) { }
+  constructor(private api : ApiService , private routh : ActivatedRoute , public account: AccountService) { }
 
   ngOnInit() {
 
@@ -33,7 +32,6 @@ curr_song_id : any ;
     this.getAlbum();
     this.getAuthors();
     this.getSongs();
-    this.isAdmin = true;
 
 
     
@@ -79,9 +77,7 @@ curr_song_id : any ;
   currSongs(albumID : any ){
 
     let s = this.songs.filter(x => x.albumID == albumID) ;
-    this.curr_songs = s ;
-    console.log(s);
-    
+    this.curr_songs = s ;    
   }
 
  

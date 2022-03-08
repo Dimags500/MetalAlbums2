@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3 mt-4">
+    <h3>Add Album</h3>
+
+    <form #addAlbumForm="ngForm" (ngSubmit)="onSubmit(addAlbumForm)">
+      <div class="form-group my-2">
+        <input name="albumName" ngModel required #albumName="ngModel" type="text" class="form-control" id="albumName"
+          aria-describedby="AlbumName" placeholder="Album Name">
+
+      </div>
+      <!-- <div class="form-group my-2">
+
+        <input name="albumAuthor" ngModel required #albumAuthor="ngModel" type="text" class="form-control"
+          id="albumAuthor" placeholder="albumAuthor">
+
+
+      </div> -->
+
+      <div class="form-group my-2">
+        <select class="form-select" ngModel required #selectedAuthor="ngModel" id="selectedAuthor"
+          name="selectedAuthor">
+          <option *ngFor="let item of authors">{{item.name}}</option>
+        </select>
+      </div>
+
+
+      <div class="form-group my-2">
+        <input name="albumYear" ngModel #albumYear="ngModel" type="text" class="form-control" id="year"
+          placeholder="Year">
+      </div>
+
+
+
+      <div class="form-group my-2">
+        <input name="albumPicture" ngModel #albumPicture="ngModel" type="text" class="form-control" id="albumPicture"
+          placeholder="albumPicture">
+
+      </div>
+
+
+      <button type="submit" class="btn btn-primary">Create <i class="bi bi-arrow-right-circle mx-1"></i></button>
+    </form>
+
+
+
+  </div>
+</div>
