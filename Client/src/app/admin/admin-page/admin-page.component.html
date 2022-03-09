@@ -48,7 +48,7 @@
 
 
         <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm table-dark">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -69,8 +69,8 @@
                 <tbody>
                     <tr *ngFor=" let album of albums ; index as  i  ">
                         <td>{{i+1}}</td>
-                        <td> <span> <a [routerLink]="['../author/' ,album.authorID]"
-                                    style="text-decoration: none;">{{getAuthorName(album.authorID)}}</a></span>
+                        <td> <span> <a [routerLink]="['../author/' ,album.authorID]" style="text-decoration: none;"
+                                    class="text-secondary">{{getAuthorName(album.authorID)}}</a></span>
                         </td>
                         <td><span> <a [routerLink]="['../album/' ,album.id]"
                                     style="text-decoration: none;">{{album.name}}</a></span></td>

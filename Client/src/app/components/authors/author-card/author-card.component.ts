@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output  , EventEmitter } from '@angular/core';
 import { IAuthor } from 'src/app/modals/author';
+import { AccountService } from 'src/app/servises/account.service';
 
 @Component({
   selector: 'app-author-card',
@@ -12,7 +13,7 @@ export class AuthorCardComponent implements OnInit {
 
   isAdmin = true;
 
-  constructor() { }
+  constructor(public account: AccountService) { }
 
   ngOnInit() {
   }

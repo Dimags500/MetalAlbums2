@@ -8,10 +8,10 @@
     </a>
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a routerLink="/authors" class="nav-link px-2 link-dark">Authors</a></li>
-      <li><a routerLink="/albums" class="nav-link px-2 link-dark">Albums</a></li>
-      <li><a routerLink="/songs" class="nav-link px-2 link-dark">Songs</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+      <li><a routerLink="/authors" class="nav-link px-2 ">Authors</a></li>
+      <li><a routerLink="/albums" class="nav-link px-2 ">Albums</a></li>
+      <li><a routerLink="/songs" class="nav-link px-2 ">Songs</a></li>
+      <li><a href="#" class="nav-link px-2 ">About</a></li>
     </ul>
 
     <div class="col-md-3 text-end" *ngIf="!(account.currentUser$ | async); else loggedBtns">
@@ -20,15 +20,18 @@
     </div>
 
     <ng-template #loggedBtns="">
-      <button routerLink="/admin" type="button" class="btn btn-warning  mx-3">Admin</button>
-      <button type="button" class="btn btn-outline-primary" (click)="logOut()">LogOut</button>
+      <div class="btn-group">
+        <button routerLink="/admin" type="button" class="btn btn-warning  mx-3">Admin</button>
+        <button type="button" class="btn btn-outline-primary" (click)="logOut()">LogOut</button>
+      </div>
+
 
     </ng-template>
   </header>
 </div>
 
 
-<div *ngIf="!showLogin">
+<div *ngIf="showLogin">
   <div *ngIf="!(account.currentUser$ | async)">
     <app-login (loginEvent)="loginModeToggle()"></app-login>
   </div>
