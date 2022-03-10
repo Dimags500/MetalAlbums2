@@ -21,6 +21,12 @@ import { CardsComponent } from './components/cards/cards.component';
 import { AuthorCardComponent } from './components/authors/author-card/author-card.component';
 import { LoginComponent } from './components/header/login/login/login.component';
 import { SongsComponent } from './components/songs/songs.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TableModule} from 'primeng/table';
+import {CarouselModule} from 'primeng/carousel';
+import { AuthorComponent } from './components/author/author.component';
+import { AuthGuard } from './guards/auth.guard';
+
 
 
 
@@ -36,12 +42,12 @@ import { SongsComponent } from './components/songs/songs.component';
     SongFormComponent , 
     AuthorFormComponent ,
     AuthorsComponent ,
-    AuthorFormComponent ,
+    AuthorComponent ,
     OrderByPipe ,
     CardsComponent ,
     AuthorCardComponent ,
     LoginComponent, 
-    SongsComponent
+    SongsComponent , 
 
     
 
@@ -50,15 +56,18 @@ import { SongsComponent } from './components/songs/songs.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     RouterModule,
     HttpClientModule ,
     FormsModule ,
     ReactiveFormsModule ,
-    NgPipesModule
+    NgPipesModule ,
+    TableModule ,
+    CarouselModule
   
   ],
-  providers: [ApiService],
+  providers: [ApiService , AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

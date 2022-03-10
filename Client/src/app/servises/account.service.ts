@@ -55,6 +55,7 @@ getUsers(){
   logOut(){
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+    location.reload();
   }
 
   

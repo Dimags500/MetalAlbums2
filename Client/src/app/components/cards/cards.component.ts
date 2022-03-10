@@ -20,7 +20,10 @@ export class CardsComponent implements OnInit {
   }
 
   getAuthorName(id: any){
-    return this.authorsArr[id -1].name as string ;
+
+    setTimeout(()=>{       
+      return this.authorsArr[id -1].name as string ;
+    }, 3000);
   }
 
 }

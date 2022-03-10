@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs/internal/Observable';
 import { IAuth } from 'src/app/modals/auth';
 import { IAuthor } from 'src/app/modals/author';
 import { ISong } from 'src/app/modals/song';
 import { ApiService } from 'src/app/servises/api.service';
+
+
+
+
+
 
 @Component({
   selector: 'app-songs',
@@ -11,13 +18,18 @@ import { ApiService } from 'src/app/servises/api.service';
 })
 export class SongsComponent implements OnInit {
 
+
+
   songs: ISong [] = [];
   authors : IAuthor [] = [] ;
-  constructor(private api : ApiService) { }
+  constructor(private api : ApiService ) { }
 
   ngOnInit() {
     this.getSongs();
     this.getAuthors();
+
+
+
   }
 
   getSongs(){
@@ -45,4 +57,10 @@ export class SongsComponent implements OnInit {
     return name.name
   }
 
+
+
 }
+
+
+
+

@@ -40,9 +40,13 @@ export class AdminPageComponent implements OnInit {
     //-----------  serach term ----------
     // this.serch();
     
-    this.getAlbums();
-    this.getAuthors();
     this.getSongs();
+    this.getAuthors();
+
+
+    setTimeout(()=>{       
+      this.getAlbums();
+    }, 1600);
   }
 
   private serch() {

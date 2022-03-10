@@ -3,6 +3,7 @@ import { IAlbum } from 'src/app/modals/album';
 import { IAuthor } from 'src/app/modals/author';
 import { ApiService } from 'src/app/servises/api.service';
 import { ActivatedRoute } from '@angular/router';
+import { timeout } from 'rxjs';
 
 
 @Component({
@@ -13,18 +14,23 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthorComponent implements OnInit {
 
   author! : IAuthor;
-  allAlbums : IAlbum[] = [] ; 
-  authorAlbums : IAlbum[] = [] ;
+  allAlbums! : IAlbum[]  ; 
+  authorAlbums! : IAlbum[]  ;
   id : any ;
 
-  constructor(private api :ApiService , private routh : ActivatedRoute) { }
+  constructor(private api :ApiService , private routh : ActivatedRoute) {}
 
   ngOnInit() {
 
     this.id = this.routh.snapshot.paramMap.get('id');    
     this.getAuthor(this.id) ;
+    
     this.getAlbums();
-    this.findAlbums();
+
+
+    setTimeout(()=>{       
+      this.findAlbums();
+  }, 1000);
 
   }
 
@@ -32,7 +38,6 @@ export class AuthorComponent implements OnInit {
   getAuthor(id : any ){
     this.api.getById('author' ,id).subscribe( (res)=> {
       this.author = res ;
-      console.log(res);
       
     }, error =>{
       console.log(error);
@@ -45,7 +50,9 @@ export class AuthorComponent implements OnInit {
 
     this.api.get('album').subscribe( (res)=> {
       this.allAlbums = res ;
-      console.log(this.author);
+      console.log(this.allAlbums);
+      
+      
       
     }, error =>{
       console.log(error);
@@ -56,6 +63,8 @@ export class AuthorComponent implements OnInit {
 
   findAlbums(){
       this.authorAlbums = this.allAlbums.filter(x => x.authorID == this.author.id);
+
+      
   }
 
   

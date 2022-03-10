@@ -12,17 +12,48 @@
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
           This content is a little bit longer.</p>
         <!-- <p class="card-text"><small class="text-muted">{{author}}</small></p> -->
+
+
       </div>
     </div>
   </div>
 </div>
 
 
-<div *ngIf="authorAlbums.length > 1">
-
-  <div class="card-group" *ngFor="let item of albums">
-    {{item.name}
-  </div>
 
 
+
+
+<!-- <div class="container">
+  <ul *ngFor="let item of authorAlbums" class="text-info">
+    <li> {{item.name}}
+    </li>
+  </ul>
+</div> -->
+
+
+
+<div class="container">
+  <p-table [value]="authorAlbums">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Img</th>
+        <th>Year</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-album>
+      <tr>
+        <td> <a routerLink="/../album/{{id}}">{{album.name}}</a>
+        </td>
+        <td> <a routerLink="/../album/{{id}}"><img src="{{album.albumPicture}}" width="60">
+          </a>
+        </td>
+
+        <td>
+          <span>{{album.year}}</span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

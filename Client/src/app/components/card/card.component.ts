@@ -30,9 +30,8 @@ curr_song_id : any ;
     console.log(this.id);
     
     this.getAlbum();
-    this.getAuthors();
     this.getSongs();
-
+    this.getAuthors();
 
     
   }
@@ -60,6 +59,8 @@ curr_song_id : any ;
     let name ;
     name = this.authors[id -1] ;
     return name.name
+
+    
   }
 
   getSongs(){

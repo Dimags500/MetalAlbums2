@@ -6,16 +6,18 @@ import { AuthorsComponent } from './components/authors/authors.component';
 import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
 import { SongsComponent } from './components/songs/songs.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
+
   { path: '', component: HomeComponent },
   {path: 'albums' , component: HomeComponent} ,
   {path: 'album/:id' , component: CardComponent} ,
-  {path: 'admin' , component: AdminPageComponent} ,
+  {path: 'admin' , component: AdminPageComponent  , canActivate: [AuthGuard]} ,
   {path: 'author/:id' , component: AuthorComponent},
   {path: 'authors' , component: AuthorsComponent} ,
   {path: 'songs' , component: SongsComponent} ,
-  // {path: '**', component: PageNotFoundComponent}
+  {path: '**', component: HomeComponent}
 
 
 
