@@ -26,6 +26,19 @@ import {TableModule} from 'primeng/table';
 import {CarouselModule} from 'primeng/carousel';
 import { AuthorComponent } from './components/author/author.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AddSongComponent } from './forms/addSong/addSong.component';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {ListboxModule} from 'primeng/listbox';
+import {SplitterModule} from 'primeng/splitter';
+import { NgSelectModule } from '@ng-select/ng-select';
+
+
+
+
+
+
 
 
 
@@ -48,6 +61,7 @@ import { AuthGuard } from './guards/auth.guard';
     AuthorCardComponent ,
     LoginComponent, 
     SongsComponent , 
+    AddSongComponent
 
     
 
@@ -64,7 +78,13 @@ import { AuthGuard } from './guards/auth.guard';
     ReactiveFormsModule ,
     NgPipesModule ,
     TableModule ,
-    CarouselModule
+    CarouselModule ,
+    DropdownModule,
+    InputTextModule ,
+    InputNumberModule ,
+    ListboxModule ,
+    SplitterModule ,
+    NgSelectModule    
   
   ],
   providers: [ApiService , AuthGuard],

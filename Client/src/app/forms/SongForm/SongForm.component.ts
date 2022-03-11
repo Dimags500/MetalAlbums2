@@ -15,8 +15,8 @@ export class SongFormComponent implements OnInit {
   @Input() edit : boolean = false ;
   @Input() id : any ;
 
-  authors : IAuthor[] = [];
-  albums : IAlbum [] = [];
+  authors! : IAuthor[] ;
+  albums! : IAlbum [] ;
   song! : ISong ;
 
   
@@ -26,6 +26,8 @@ export class SongFormComponent implements OnInit {
   ngOnInit() {
     this.getAlbums();
     this.getAuthors();
+
+
     if(this.edit){
       console.log(this.id);
       this.getSongById();

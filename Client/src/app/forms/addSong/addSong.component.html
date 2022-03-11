@@ -1,0 +1,48 @@
+<section>
+  <div class="col-md-6 offset-md-3 mt-4">
+
+    <form class="form-group" #f="ngForm">
+      <div class="form-group my-2">
+        <select class="form-select" [(ngModel)]="selectedAlbum" name="valueCheck" (change)="valueChange($event)">
+          <option [ngValue]="undefined" disabled>Album </option>
+          <option *ngFor="let album of albums" [value]="album.id" [selected]="album.id ">
+            {{ album.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group my-2">
+        <select class="form-select" [(ngModel)]="selectedAuthor" name="valueCheck" (change)="valueChange($event)">
+          <option [ngValue]="undefined" disabled>Author </option>
+          <option *ngFor="let author of authors" [value]="author.id" [selected]="author.id">
+            {{ author.name }}
+          </option>
+        </select>
+      </div>
+
+
+      <div class="form-group my-2">
+        <input name="songName" ngModel #songName="ngModel" type="text" class="form-control" id="name"
+          placeholder="Name">
+      </div>
+
+
+      <div class="form-group my-2">
+        <input name="songYear" ngModel #songYear="ngModel" type="number" class="form-control" id="year"
+          placeholder="Year">
+      </div>
+      <div class="form-group my-2">
+        <input name="trackNumber" ngModel #trackNumber="ngModel" type="number" class="form-control" id="trackNumber"
+          placeholder="trackNumber">
+      </div>
+
+
+      <button class="btn btn-info" type="submit" (click)="onSubmit(f)">Create</button>
+
+    </form>
+
+  </div>
+
+
+
+</section>
